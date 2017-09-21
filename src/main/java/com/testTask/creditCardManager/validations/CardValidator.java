@@ -2,6 +2,7 @@ package com.testTask.creditCardManager.validations;
 
 
 import com.testTask.creditCardManager.models.Card;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -16,6 +17,18 @@ import java.text.SimpleDateFormat;
  */
 @Component
 public class CardValidator implements Validator {
+
+    @Value("${card.cardNumber.minLength}")
+    private int cardNumberMinLength;
+
+    @Value("${card.cardNumber.maxLength}")
+    private int cardNumberMaxLength;
+
+    @Value("${card.clientName.minLength}")
+    private int clientNameMinLength;
+
+    @Value("${card.clientName.max}")
+    private int clientNameMaxLength;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -34,12 +47,12 @@ public class CardValidator implements Validator {
             errors.rejectValue("expiryDate", "Incorrect format!");
         }
 
-        if (!card.getCardNumber().matches("[0-9]+") || card.getCardNumber().length() < 12 || card.getCardNumber()
-            .length() > 22) {
+        if (!card.getCardNumber().matches("[0-9]+") || card.getCardNumber().length() < cardNumberMinLength || card.getCardNumber()
+            .length() > cardNumberMaxLength) {
             errors.rejectValue("cardNumber", "Incorrect length!");
         }
 
-        if (card.getClientName().length() < 2 || card.getClientName().length() > 35) {
+        if (card.getClientName().length() < clientNameMinLength || card.getClientName().length() > clientNameMaxLength) {
             errors.rejectValue("clientName", "Incorrect length!");
         }
 
