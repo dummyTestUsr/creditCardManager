@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login!!!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-3">
+                </div>
+                <div class="col-sm-6">
+                    <form method="POST" th:action="@{/login}" class="form-signin">
+                        <h2>Sign in</h2>
+
+                        <div class="form-group">
+                            <label class="col-md-2 col-form-label col-form-label-md">Username</label>
+                            <div class="col-sm-7">
+                                <input type="text" id="username" th:placeholder="username" name="username"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 col-form-label col-form-label-md">Password</label>
+                            <div class="col-sm-7">
+                                <input type="password" id="password" th:placeholder="password" name="password"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <button name="Submit" value="login" type="Submit" th:text="Login"
+                                        class="btn btn-primary btn-block"></button>
+                            </div>
+
+                        </div>
+
+                        <span th:utext="${message}"></span>
+                        <span th:utext="${error}"></span>
+
+                    </form>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <form th:action="@{/register}" method="get">
+                            <button class="btn btn-warning btn-block" th:text="Register" type="Submit">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

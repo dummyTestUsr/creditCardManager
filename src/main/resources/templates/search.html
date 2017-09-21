@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Search!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-body">
+
+            <div class="row">
+                <form th:action="@{/cardInformation}" method="get">
+                    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Card Information Page</button>
+                </form>
+            </div>
+
+            <div class="row">
+                <form autocomplete="off" th:action="@{/search}"
+                      th:object="${card}" method="post" class="form-horizontal"
+                      role="form">
+                    <h2>Search Card</h2>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" th:field="*{cardNumber}" placeholder="cardNumber"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary btn-block">Search Card</button>
+                        </div>
+                    </div>
+                    <span th:utext="${successMessage}"></span>
+                </form>
+            </div>
+
+
+            <div class="row">
+
+                <h3> Search Results </h3>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Card Number</th>
+                        <th>Name</th>
+                        <th>Expiry Date</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="cardInstance : ${searchResults}">
+                    <tr>
+                        <td th:text="${cardInstance.cardNumber}"/>
+                        <td th:text="${cardInstance.clientName}"/>
+                        <td th:text="${cardInstance.expiryDate}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
