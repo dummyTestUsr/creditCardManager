@@ -11,13 +11,13 @@ There are 4 main screens:
 
 2) User Registration Screen
 
-    username (text 3-10chars)    
-    password (text 3-20chars)
+    username (text 3-15chars)    
+    password (text 3-15chars)
     
 3) Card Registration
 
-    cardNumber (digits 12 -22)    
-    clientName (text 2-35)    
+    cardNumber (digits 12 -26)    
+    clientName (text 3-20)    
     expiryDate (text YY/MM)
     
 4)Search
